@@ -19,12 +19,12 @@ def google_register(Debug):
         filename = '_private-key2.json'
         with open(filename, 'w') as f:
             f.write(line)
+        print("wrote-----")
+        # bashCommand = f"gcloud auth activate-service-account {service_account} --key-file={filename}"
+        # subprocess.run(bashCommand.split(), shell=True)
 
-        bashCommand = f"gcloud auth activate-service-account {service_account} --key-file={filename}"
-        subprocess.run(bashCommand.split(), shell=True)
-
-    ee.Initialize()
-    print("-----Success----")
+    # ee.Initialize()
+    # print("-----Success----")
 
 # pip install --upgrade tornado
 # pip install --upgrade google-api-python-client
