@@ -19,6 +19,11 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
+from ee_app import register
+
+register.google_register(Settings().DEBUG)
+
+
 # Dependency
 def get_db():
     db = SessionLocal()

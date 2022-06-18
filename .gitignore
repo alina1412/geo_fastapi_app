@@ -5,3 +5,4 @@ __pycache__
 alembic_
 alembic.ini
 docker-compose.dev.yml
+*private-key*
