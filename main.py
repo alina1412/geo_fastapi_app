@@ -8,11 +8,11 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-import models, schemas
-from settings import Settings
-from database import SessionLocal, engine
+import geo_app.models as models, geo_app.schemas as schemas
+from geo_app.settings import Settings
+from geo_app.database import SessionLocal, engine
 # from geo_db_manager import FieldManager
-import geo_db_manager as gmanager
+import geo_app.geo_db_manager as gmanager
 
 models.Base.metadata.create_all(bind=engine)
 

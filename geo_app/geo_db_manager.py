@@ -5,7 +5,7 @@ from pydantic import Json
 from sqlalchemy.orm import Session
 
 
-from models import GeoField
+from .models import GeoField
 
 
 class BaseRepository:
