@@ -4,6 +4,10 @@ import json
 import os
 import subprocess
 
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
+
 
 def google_register(Debug):
     if Debug:
@@ -19,7 +23,9 @@ def google_register(Debug):
         filename = '_private-key2.json'
         with open(filename, 'w') as f:
             f.write(line)
-        print("wrote-----")
+        logger.debug("wrote-----")
+
+        logger.debug(os.path.exists(filename))
         # bashCommand = f"gcloud auth activate-service-account {service_account} --key-file={filename}"
         # subprocess.run(bashCommand.split(), shell=True)
 
