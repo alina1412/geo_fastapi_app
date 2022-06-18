@@ -4,4 +4,4 @@ data
 __pycache__
 alembic_
 alembic.ini
-_docker-compose.dev.yml
+docker-compose.dev.yml
