@@ -1,10 +1,10 @@
 import os
-import shutil
+# import shutil
 import ee
 import requests
 # from register import google_register
 # google_register()
-import geemap
+# import geemap
 
 import logging
 logger = logging.getLogger(__name__)
