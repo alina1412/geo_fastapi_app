@@ -22,8 +22,8 @@ app = FastAPI()
 #########
 from ee_app import register, earth_manager
 url = earth_manager.example4()
-logger.debug(f"CHECK___", url)
-register.google_register(Settings().DEBUG)
+logger.debug(f"CHECK___ {url}")
+# register.google_register(Settings().DEBUG)
 #########
 
 
