@@ -8,3 +8,4 @@ docker-compose.dev.yml
 *private-key*
 geovenv/
 example/
+_ee_app/

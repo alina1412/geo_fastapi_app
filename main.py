@@ -10,8 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 import geo_app.models as models, geo_app.schemas as schemas
 from geo_app.settings import Settings
-from geo_app.database import SessionLocal, engine
-# from geo_db_manager import FieldManager
+from geo_app.database import SessionLocal, engine, get_db
 import geo_app.geo_db_manager as gmanager
 
 models.Base.metadata.create_all(bind=engine)
@@ -20,20 +19,10 @@ app = FastAPI()
 
 
 #########
-from ee_app import register, earth_manager
-url = earth_manager.example4()
-logger.debug(f"CHECK___ {url}")
-# register.google_register(Settings().DEBUG)
+# from ee_app import register, earth_manager
+# url = earth_manager.example4()
+# logger.debug(f"CHECK___ {url}")
 #########
-
-
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 
@@ -46,7 +35,6 @@ async def get_geolist(skip: int = 0, limit: int = 100, db: Session = Depends(get
 
 @app.get("/get-json/{geo_id}")  # response_model=Union[models.GeoField, None]
 async def get_json(geo_id: int, db: Session = Depends(get_db)):
-    # FM = FieldManager(db=db)
     response = await gmanager.get_by_id(db=db, id=geo_id)
     if type(response) == models.GeoField:
         print(response.gfield)
@@ -62,7 +50,7 @@ async def add_geo_json(new_json: dict, db: Session = Depends(get_db)):
     return new_json_id
     
 
-@app.get("/delete/", status_code=status.HTTP_200_OK)
+@app.delete("/delete/", status_code=status.HTTP_200_OK)
 async def delete_geo_json(id: int, db: Session = Depends(get_db)):
     response: int = await gmanager.delete(db=db, id=id)
     if response != 200:
@@ -79,4 +67,5 @@ if __name__ == "__main__":
                 host=app_settings.server_host,
                 # log_config=app_settings.LOGGING_CONFIG,
                 # log_level="debug",
-                reload=True)
+                reload=True
+                )

@@ -1,19 +1,12 @@
-from databases import Database
+# from databases import Database
 from fastapi import HTTPException
-import psycopg2
+# import psycopg2
 from pydantic import Json
 from sqlalchemy.orm import Session
 
 
 from .models import GeoField
 
-
-class BaseRepository:
-    def __init__(self, database: Database):
-        self.database = database
-
-
-# class FieldManager(BaseRepository):
 
 async def get_all(db: Session, limit: int = 100, skip: int = 0):
     res = db.query(GeoField).offset(skip).limit(limit).all()
@@ -22,7 +15,6 @@ async def get_all(db: Session, limit: int = 100, skip: int = 0):
 
 async def get_by_id(db: Session, id: int):
     response = db.query(GeoField).filter(GeoField.id == id).first()
-    # print(type(response))
     return response
 
 
@@ -55,9 +47,6 @@ async def create(db: Session, field: Json):
                             detail=f"Error: {type(e).__name__}")
 
     
-
-# async def get_by_name(self, name: str):
-#     return
 
 async def delete(db: Session, id: int):
     try:

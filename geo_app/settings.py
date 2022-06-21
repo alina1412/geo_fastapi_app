@@ -1,5 +1,4 @@
-import os
-from urllib.parse import urlparse
+
 from pydantic import BaseSettings
 
 from starlette.config import Config
