@@ -9,3 +9,7 @@ docker-compose.dev.yml
 geovenv/
 example/
 _ee_app/
+.coverage
+htmlcov
+.pytest_cache
+sql_app.db
